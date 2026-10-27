@@ -1,0 +1,34 @@
+# TrendLens dependencies — full list for all 15 phases.
+# You won't need to pip install these all today; install as each phase
+# is actually implemented so you understand what each package is for.
+
+# --- Phase 1: core setup ---
+python-dotenv==1.0.1
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.35
+
+# --- Phase 3-5: data collection ---
+requests==2.32.3
+praw==7.7.1
+pandas==2.2.3
+
+# --- Phase 6: preprocessing ---
+nltk==3.9.1
+spacy==3.8.2
+
+# --- Phase 7: sentiment ---
+vaderSentiment==3.3.2
+
+# --- Phase 8-9: keywords / topic modeling ---
+scikit-learn==1.5.2
+
+# --- Phase 11: backend ---
+fastapi==0.115.0
+uvicorn==0.31.0
+
+# --- Phase 12: dashboard ---
+streamlit==1.39.0
+plotly==5.24.1
+
+# --- Phase 14: testing ---
+pytest==8.3.3

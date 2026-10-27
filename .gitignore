@@ -1,0 +1,28 @@
+git status# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# OS/editor
+.DS_Store
+.vscode/
+
+# Data artifacts (if you ever dump local exports)
+*.csv
+*.db
+logs/
+@"
+
+# Logs and generated files
+logs/
+*.log
+node_modules/
+dist/
+.env.*
+!.env.example
+"@ | Add-Content .gitignore
