@@ -16,9 +16,12 @@ DB_NAME = os.getenv("DB_NAME", "trendlens")
 DB_USER = os.getenv("DB_USER", "trendlens_user")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 
-DATABASE_URL = (
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+DATABASE_URL = os.getenv("DATABASE_URL") or (
+    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}"
+    f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
+
 
 # --- API keys (used from Phase 3 onward) ---
 GNEWS_API_KEY = os.getenv("GNEWS_API_KEY", "")
