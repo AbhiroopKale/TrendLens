@@ -44,29 +44,35 @@ export default function App() {
   const [trendDetail, setTrendDetail] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
 
-  async function loadDashboard() {
-    setLoading(true);
-    setError("");
-    try {
-      const [t, s, a, p] = await Promise.all([
-        axios.get(`${API}/trends/`),
-        axios.get(`${API}/sentiment/`),
-        axios.get(`${API}/articles/`),
-        axios.get(`${API}/posts/`),
-      ]);
-      setData({
-        trends: t.data.trends ?? [],
-        sentiment: s.data.sentiment ?? [],
-        articles: a.data.articles ?? [],
-        posts: p.data.posts ?? [],
-      });
-    } catch (e) {
-      console.error(e);
-      setError("Could not connect to the API. Ensure FastAPI is running at 127.0.0.1:8000 and CORS is enabled.");
-    } finally {
-      setLoading(false);
-    }
+  
+async function loadDashboard() {
+  setLoading(true);
+  setError("");
+
+  try {
+    const [t, s, a, p] = await Promise.all([
+      axios.get(`${API_URL}/trends/`),
+      axios.get(`${API_URL}/sentiment/`),
+      axios.get(`${API_URL}/articles/`),
+      axios.get(`${API_URL}/posts/`),
+    ]);
+
+    setData({
+      trends: t.data.trends ?? [],
+      sentiment: s.data.sentiment ?? [],
+      articles: a.data.articles ?? [],
+      posts: p.data.posts ?? [],
+    });
+  } catch (e) {
+    console.error("TrendLens API error:", e);
+    setError(
+      "Could not connect to the TrendLens API. Please try again later."
+    );
+  } finally {
+    setLoading(false);
   }
+}
+
 
   useEffect(() => { loadDashboard(); }, []);
 
@@ -79,7 +85,7 @@ export default function App() {
   useEffect(() => {
     if (sortedTrends.length > 0) {
       const topTopic = sortedTrends[0].topic_or_keyword;
-      axios.get(`${API}/trends/${encodeURIComponent(topTopic)}`)
+      axios.get(`${API_URL}/trends/${encodeURIComponent(topTopic)}`)
         .then(res => setHeroDetail(res.data))
         .catch(err => console.error("Could not fetch hero detail:", err));
     }
@@ -90,7 +96,9 @@ export default function App() {
     setSelectedTopic(topic);
     setDetailLoading(true);
     try {
-      const res = await axios.get(`${API}/trends/${encodeURIComponent(topic)}`);
+      const res = await axios.get(
+  `${API_URL}/trends/${encodeURIComponent(topic)}`
+);
       setTrendDetail(res.data);
     } catch (err) {
       console.error("Error loading trend details:", err);
