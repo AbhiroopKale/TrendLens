@@ -13,7 +13,8 @@ import "./heat.css";
 import { TrendHero, HeatBoard, FilterChips, TrendDetailModal } from "./TrendViews";
 import { matchesChip } from "./trendUtils";
 
-const API = "http://127.0.0.1:8000";
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 const COLORS = ["#16a36a", "#94a3b8", "#ef4444"];
 
 const NAV = [
