@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TrendLens — Web & Social Media Analytics Platform
 
 Final-year B.Tech project. Collects news + social media text, runs NLP
@@ -67,3 +68,6 @@ fakes results.
 
 From here we go phase by phase, replacing each `NotImplementedError`
 with real code — tell me when you're ready for Phase 3.
+=======
+# TrendLens
+>>>>>>> f8b8cbdff2361c484037a95d0c1d3f3a1de4a87a
